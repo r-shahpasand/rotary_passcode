@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:rotary_passcode/enums/input_modes.dart';
 
 class InputModeButtonWidget extends StatelessWidget {
   const InputModeButtonWidget({
-    required this.simpleInputMode,
+    required this.inputMode,
     required this.onModeChanged,
     super.key,
   });
 
-  final bool simpleInputMode;
+  final InputModes inputMode;
   final VoidCallback onModeChanged;
 
   @override
@@ -15,7 +16,8 @@ class InputModeButtonWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onModeChanged,
       child: Text(
-        (simpleInputMode ? 'Original' : 'Simplify').toUpperCase(),
+        (inputMode == InputModes.original ? 'Original' : 'Simplify')
+            .toUpperCase(),
         style: Theme.of(context)
             .textTheme
             .headlineSmall

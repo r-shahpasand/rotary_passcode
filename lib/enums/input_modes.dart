@@ -1,0 +1,4 @@
+enum InputModes {
+  simple,
+  original,
+}
