@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:rotary_passcode/config/constants.dart';
+import 'package:rotary_passcode/widgets/dial_number_widget.dart';
 
 const _alignment = MainAxisAlignment.spaceEvenly;
 
@@ -16,10 +17,10 @@ class PasscodeInputWidget extends StatelessWidget {
             mainAxisAlignment: _alignment,
             children: [
               for (var j = 0; j < 3; j++)
-                Text(Constants.inputValues[i * 3 + j].toString()),
+                DialNumberWidget(number: Constants.inputValues[i * 3 + j]),
             ],
           ),
-        Text(Constants.inputValues.last.toString()),
+        DialNumberWidget(number: Constants.inputValues.last),
       ],
     );
   }
