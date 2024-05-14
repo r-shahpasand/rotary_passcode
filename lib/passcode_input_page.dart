@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rotary_passcode/enums/input_modes.dart';
 import 'package:rotary_passcode/widgets/input_mode_button_widget.dart';
 import 'package:rotary_passcode/widgets/passcode_input_widget.dart';
+import 'package:rotary_passcode/widgets/rotary_input_widget.dart';
 
 const _padding = 16.0;
 
@@ -17,10 +18,10 @@ class PassCodeInputPage extends StatefulWidget {
 }
 
 class _PassCodeInputPageState extends State<PassCodeInputPage> {
-  InputModes _passCodeMode = InputModes.original;
+  InputModes _inputMode = InputModes.original;
 
   void _onModeChanged() => setState(() {
-        _passCodeMode = _passCodeMode == InputModes.original
+        _inputMode = _inputMode == InputModes.original
             ? InputModes.simple
             : InputModes.original;
       });
@@ -47,11 +48,15 @@ class _PassCodeInputPageState extends State<PassCodeInputPage> {
                     ),
               ),
               const SizedBox(height: 32.0),
-              const Expanded(child: PasscodeInputWidget()),
+              Expanded(
+                child: _inputMode == InputModes.original
+                    ? PasscodeInputWidget()
+                    : RotaryInputWidget(),
+              ),
               Align(
                 alignment: Alignment.centerRight,
                 child: InputModeButtonWidget(
-                  inputMode: _passCodeMode,
+                  inputMode: _inputMode,
                   onModeChanged: _onModeChanged,
                 ),
               ),
